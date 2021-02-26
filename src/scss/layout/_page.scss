@@ -15,3 +15,16 @@ img {
 	display: flex;
 	align-items: center;
 }
+
+.listButtonsPlataform {
+	list-style: none;
+	display: flex;
+}
+
+.statButton {
+	margin: 5px;
+}
+.statButtonFocus {
+	margin: 5px;
+	background-color: red;
+}
