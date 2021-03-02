@@ -16,15 +16,30 @@ img {
 	align-items: center;
 }
 
-.listButtonsPlataform {
+.statButton {
+	margin: 5px;
+}
+
+.statButtonFocus {
+	margin: 5px;
+	background-color: red;
+}
+
+.sectionOfType {
+	border: 1px solid black;
+	margin: 20px;
+}
+
+.sectionOfTypeTitle {
+	margin-bottom: 10px;
+}
+
+ul {
 	list-style: none;
 	display: flex;
 }
 
-.statButton {
-	margin: 5px;
-}
-.statButtonFocus {
-	margin: 5px;
-	background-color: red;
+.sectionOfTypeItem {
+	display: flex;
+	width: 120px;
 }

@@ -10,9 +10,10 @@ let statsData = {};
 let buttonStatChecked = "All";
 
 function resetear() {
+	mensaje.innerText = null;
 	containerAccount.innerHTML = "";
 	listButtonsPlataform.innerHTML = "";
-	mensaje.innerText = null;
+	containerStats.innerHTML = "";
 }
 
 function buscarEstadísticas() {
@@ -47,6 +48,7 @@ const getContainerAccount = (account, image, battlePass) => {
 };
 
 function getButtonsPlataform(stats) {
+	resetear();
 	const arrayOfPlataforms = Object.keys(stats);
 	const createListElementFactory = (plataform) => {
 		const li = document.createElement("li");
@@ -61,14 +63,26 @@ function getButtonsPlataform(stats) {
 }
 
 function getStats(ev) {
+	containerStats.innerHTML = "";
 	const currentButton = ev.target.value;
 	const filterData = statsData[currentButton];
 	const arrayOfTypes = Object.keys(filterData);
+	console.log({ filterData });
 
 	const createListElementFactory = (type) => {
-		const h1 = document.createElement("h1");
-		h1.createTextNode = `${type}`;
-		return h1;
+		const section = document.createElement("section");
+		section.className = "sectionOfType";
+		section.innerHTML = `<h3 class=sectionOfTypeTitle>${type}</h3>`;
+		const ul = document.createElement("ul");
+		section.appendChild(ul);
+
+		for (const property in filterData[type]) {
+			const li = document.createElement("li");
+			li.innerHTML = `<li class='sectionOfTypeItem'><h4>${property}:</h4> <p>${filterData[type][property]}</p></li>`;
+			ul.appendChild(li);
+		}
+
+		return section;
 	};
 
 	arrayOfTypes.forEach((type) =>
