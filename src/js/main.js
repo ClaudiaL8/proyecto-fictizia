@@ -48,7 +48,6 @@ const getContainerAccount = (account, image, battlePass) => {
 };
 
 function getButtonsPlataform(stats) {
-	resetear();
 	const arrayOfPlataforms = Object.keys(stats);
 	const createListElementFactory = (plataform) => {
 		const li = document.createElement("li");
@@ -67,24 +66,20 @@ function getStats(ev) {
 	const currentButton = ev.target.value;
 	const filterData = statsData[currentButton];
 	const arrayOfTypes = Object.keys(filterData);
-	console.log({ filterData });
-
 	const createListElementFactory = (type) => {
 		const section = document.createElement("section");
 		section.className = "sectionOfType";
 		section.innerHTML = `<h3 class=sectionOfTypeTitle>${type}</h3>`;
 		const ul = document.createElement("ul");
+		ul.className = "listDataStats";
 		section.appendChild(ul);
-
 		for (const property in filterData[type]) {
 			const li = document.createElement("li");
 			li.innerHTML = `<li class='sectionOfTypeItem'><h4>${property}:</h4> <p>${filterData[type][property]}</p></li>`;
 			ul.appendChild(li);
 		}
-
 		return section;
 	};
-
 	arrayOfTypes.forEach((type) =>
 		containerStats.append(createListElementFactory(type))
 	);

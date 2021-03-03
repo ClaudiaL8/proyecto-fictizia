@@ -11,9 +11,18 @@ img {
 	margin: 30px;
 }
 
+ul {
+	list-style: none;
+}
+
+.searchBox {
+	text-align: center;
+}
+
 .containerAccount {
 	display: flex;
 	align-items: center;
+	justify-content: center;
 }
 
 .statButton {
@@ -32,14 +41,24 @@ img {
 
 .sectionOfTypeTitle {
 	margin-bottom: 10px;
+	text-align: center;
 }
 
-ul {
-	list-style: none;
+.listButtonsPlataform {
 	display: flex;
+}
+
+.listDataStats {
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr 1fr;
+	grid-gap: 20px;
+	overflow-x: scroll;
 }
 
 .sectionOfTypeItem {
 	display: flex;
-	width: 120px;
+	width: auto;
+	margin: 10px;
+	padding: 10px;
+	justify-content: space-around;
 }
