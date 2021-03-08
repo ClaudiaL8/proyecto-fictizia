@@ -1,11 +1,5 @@
 "use strict";
 
-const boton = document.querySelector(".searchBoxBoton");
-const input = document.querySelector(".searchBoxInput");
-const mensaje = document.querySelector(".mensaje");
-const containerAccount = document.querySelector(".containerAccount");
-const listButtonsPlataform = document.querySelector(".listButtonsPlataform");
-const containerStats = document.querySelector(".containerStats");
 let statsData = {};
 let buttonStatChecked = "All";
 
@@ -65,7 +59,9 @@ function getStats(ev) {
 	containerStats.innerHTML = "";
 	const currentButton = ev.target.value;
 	const filterData = statsData[currentButton];
-	const arrayOfTypes = Object.keys(filterData);
+	const arrayOfTypes = Object.keys(filterData).filter(
+		(type) => type !== "ltm" && type !== "trio"
+	);
 	const createListElementFactory = (type) => {
 		const section = document.createElement("section");
 		section.className = "sectionOfType";
@@ -80,9 +76,31 @@ function getStats(ev) {
 		}
 		return section;
 	};
-	arrayOfTypes.forEach((type) =>
-		containerStats.append(createListElementFactory(type))
-	);
+	arrayOfTypes.forEach((type) => {
+		if (type === "overall") {
+			return createSectionOverall(filterData["overall"]);
+		}
+		return containerStats.append(createListElementFactory(type));
+	});
 }
 
-boton.addEventListener("click", buscarEstadísticas);
+const createSectionOverall = (data) => {
+	containerStats.append(createOverallList(data));
+};
+
+const createOverallList = (data) => {
+	const ul = document.createElement("ul");
+	ul.className = "listDataOverall";
+	for (const property in data) {
+		if (
+			property === "wins" ||
+			property === "kills" ||
+			property === "minutesPlayed"
+		) {
+			const li = document.createElement("li");
+			li.innerHTML = `<li class='itemOverall'><h4>${property}:</h4> <p>${data[property]}</p></li>`;
+			ul.appendChild(li);
+		}
+	}
+	return ul;
+};
