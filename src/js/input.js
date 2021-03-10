@@ -36,7 +36,15 @@ const createSuggestionsList = (suggestions) => {
 	suggestions.map((suggestion) => {
 		const li = document.createElement("li");
 		li.innerHTML = `<li class='sugestionsListItem'>${suggestion.name}</li>`;
+		li.addEventListener("click", handlePlayer);
 		ul.appendChild(li);
 	});
 	return ul;
+};
+
+const handlePlayer = (ev) => {
+	input.value = ev.target.innerText;
+	buscarEstadísticas();
+	containerSuggestions.innerText = null;
+	input.value = "";
 };
