@@ -45,8 +45,9 @@ function getButtonsPlataform(stats) {
 	const arrayOfPlataforms = Object.keys(stats);
 	const createListElementFactory = (plataform) => {
 		const li = document.createElement("li");
-		li.innerHTML = `<input type='button' value=${plataform} class='statButton'/>`;
+		li.innerHTML = `<input type='button' value=${plataform} class='statButton' id='${plataform}'/>`;
 		li.addEventListener("click", getStats);
+
 		return li;
 	};
 
@@ -71,7 +72,7 @@ function getStats(ev) {
 		section.appendChild(ul);
 		for (const property in filterData[type]) {
 			const li = document.createElement("li");
-			li.innerHTML = `<li class='sectionOfTypeItem'><h4>${property}:</h4> <p>${filterData[type][property]}</p></li>`;
+			li.innerHTML = `<li class='sectionOfTypeItem'><h4>${property}:</h4><p>${filterData[type][property]}</p></li>`;
 			ul.appendChild(li);
 		}
 		return section;
@@ -91,16 +92,24 @@ const createSectionOverall = (data) => {
 const createOverallList = (data) => {
 	const ul = document.createElement("ul");
 	ul.className = "listDataOverall";
+	let dataOverall = [];
 	for (const property in data) {
 		if (
 			property === "wins" ||
+			property === "winRate" ||
 			property === "kills" ||
+			property === "killsPerMin" ||
 			property === "minutesPlayed"
 		) {
-			const li = document.createElement("li");
-			li.innerHTML = `<li class='itemOverall'><h4>${property}:</h4> <p>${data[property]}</p></li>`;
-			ul.appendChild(li);
+			dataOverall.push(property);
 		}
 	}
+	dataOverall.sort().reverse();
+	dataOverall.forEach((property) => {
+		const li = document.createElement("li");
+		li.innerHTML = `<li class='itemOverall'><h4>${property}</h4><p>${data[property]}</p></li>`;
+		ul.appendChild(li);
+	});
+
 	return ul;
 };

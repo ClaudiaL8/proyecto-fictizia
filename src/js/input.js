@@ -2,7 +2,7 @@
 
 const searchPlayers = () => {
 	containerSuggestions.innerText = null;
-
+	mensaje.innerText = null;
 	if (input.value.length > 2) {
 		fetch(
 			"https://search-api.tracker.network/search/fortnite?advanced=1&q=" +
@@ -48,3 +48,14 @@ const handlePlayer = (ev) => {
 	containerSuggestions.innerText = null;
 	input.value = "";
 };
+
+document.addEventListener(
+	"click",
+	function (e) {
+		const className = e.target.className;
+		if (className !== "sugestionsListItem") {
+			containerSuggestions.innerText = null;
+		}
+	},
+	false
+);

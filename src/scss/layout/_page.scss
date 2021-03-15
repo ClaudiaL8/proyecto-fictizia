@@ -62,3 +62,31 @@ ul {
 	padding: 10px;
 	justify-content: space-around;
 }
+
+.listDataOverall{
+	display: flex;
+	margin: 20px;
+	justify-content: space-around;
+	padding: 10px;
+}
+
+.itemOverall{
+	text-align: center;
+}
+
+.containerSuggestions{
+}
+
+.suggestionsList{
+	background-color: beige;
+	margin:0 auto;
+	width: 30%;
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr;
+	grid-gap: 20px;
+	border: 1px outset #cccccc;
+}
+
+.sugestionsListItem{
+	cursor: pointer;
+}
