@@ -35,7 +35,7 @@ function buscarEstadísticas() {
 }
 const getContainerAccount = (account, image, battlePass) => {
 	containerAccount.innerHTML = `<img src=${
-		image ? image : "../assets/images/9ab5124473a2a7b045ebc3e9c0dc1076.jpg"
+		image ? image : "../assets/images/perfil.jpg"
 	} alt='profile picture'/><h2>${account.name}</h2><p>${
 		battlePass.level
 	}</p>`;
